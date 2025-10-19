@@ -36,9 +36,9 @@ public class UIManager : MonoBehaviour
         tankSizeSlider.onValueChanged.AddListener(OnTankSliderChanged);
         sunIntensitySlider.onValueChanged.AddListener(OnSunSliderChanged);
 
-        // --- SETUP BUTTON LISTENERS (Also done in Inspector, but can be done here too) ---
-        // unitToggleButton.onClick.AddListener(OnUnitToggleClicked);
-        // loadButton.onClick.AddListener(OnLoadButtonClicked);
+        // --- SETUP BUTTON LISTENERS (Can also be done in Inspector) ---
+        unitToggleButton.onClick.AddListener(OnUnitToggleClicked);
+        loadButton.onClick.AddListener(OnLoadButtonClicked);
 
         // Initialize UI with default values
         InitializeUI();
@@ -125,14 +125,14 @@ public class UIManager : MonoBehaviour
         // Display temperatures in the selected unit
         if (simManager.useMetric)
         {
-            tankTempText.text = $"Tank Temp: {simManager.tankTempC:F1}°C";
-            panelTempText.text = $"Panel Temp: {simManager.panelTempC:F1}°C";
+            tankTempText.text = $"Tank Temp: {simManager.GetTankTempC():F1}°C";
+            panelTempText.text = $"Panel Temp: {simManager.GetPanelTempC():F1}°C";
             ambientTempText.text = $"Ambient: {simManager.ambientTempC:F1}°C";
         }
         else // Imperial
         {
-            tankTempText.text = $"Tank Temp: {simManager.CtoF(simManager.tankTempC):F1}°F";
-            panelTempText.text = $"Panel Temp: {simManager.CtoF(simManager.panelTempC):F1}°F";
+            tankTempText.text = $"Tank Temp: {simManager.CtoF(simManager.GetTankTempC()):F1}°F";
+            panelTempText.text = $"Panel Temp: {simManager.CtoF(simManager.GetPanelTempC()):F1}°F";
             ambientTempText.text = $"Ambient: {simManager.CtoF(simManager.ambientTempC):F1}°F";
         }
     }
