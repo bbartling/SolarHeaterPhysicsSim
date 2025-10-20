@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: cb596a8b82b043e4bb88074e61c691d3
+  productGUID: dd117c9065d48c140866c664b8ca9814
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: SolarPhysicsSim
+  productName: SolarSimBuildTwo
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -141,8 +141,7 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
-  preloadedAssets:
-  - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -839,14 +838,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: SolarPhysicsSim
+  metroPackageName: SolarSimBuildTwo
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: SolarPhysicsSim
+  metroApplicationDescription: SolarSimBuildTwo
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -917,10 +916,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 2b18627c-9531-404a-8eb4-acba131fecc5
+  cloudProjectId: 1015c710-520a-4237-b838-66a5ef31915e
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: SolarPhysicsSim
+  projectName: SolarSimBuildTwo
   organizationId: unity_c9e4f48024e55456d56c
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

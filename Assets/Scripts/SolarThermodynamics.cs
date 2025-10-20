@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SolarThermodynamics
 {
-    // ---- same core as "SuperBasicThermo" ----
     public float A = 4f;       // collector area (m²)
     public float V = 80f;      // tank volume (L ≈ kg)
     public float eta = 0.70f;  // flat efficiency
@@ -48,7 +47,6 @@ public class SolarThermodynamics
         Tt = Mathf.Max(Ta, Tt);
     }
 
-    // ---- tiny wrappers so SolarSimManager/UI don't change ----
     public void RunPhysicsStep(float dt, float G, float timeMult, float ambientC)
     {
         Ta = ambientC;
@@ -66,7 +64,6 @@ public class SolarThermodynamics
         Tt = Tt * (1f - f) + cold * f;
     }
 
-    // Keep SolarSimManager happy (maps old names to new fields)
     public float CollectorArea_sqM
     {
         get => A;
