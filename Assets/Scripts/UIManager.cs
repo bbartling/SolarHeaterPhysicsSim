@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Make sure to import TextMeshPro
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI tankSizeText;
     public TextMeshProUGUI sunIntensityText;
     public TextMeshProUGUI unitButtonText;
-    public TextMeshProUGUI timeText;
     public TextMeshProUGUI tankTempText;
     public TextMeshProUGUI panelTempText;
     public TextMeshProUGUI ambientTempText;
@@ -30,34 +29,32 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        // --- SETUP SLIDER LISTENERS ---
-        // This makes a method run every time a slider's value changes.
+        // --- SETUP LISTENERS ---
         panelSizeSlider.onValueChanged.AddListener(OnPanelSliderChanged);
         tankSizeSlider.onValueChanged.AddListener(OnTankSliderChanged);
         sunIntensitySlider.onValueChanged.AddListener(OnSunSliderChanged);
-
-        // --- SETUP BUTTON LISTENERS (Can also be done in Inspector) ---
         unitToggleButton.onClick.AddListener(OnUnitToggleClicked);
         loadButton.onClick.AddListener(OnLoadButtonClicked);
 
-        // Initialize UI with default values
         InitializeUI();
     }
 
     void Update()
     {
-        // Update all the text fields every frame with the latest data from the simulation
         UpdateDataDisplays();
     }
 
     void InitializeUI()
     {
-        // Set sliders to match the initial values in the sim manager
+        // Set sliders to match initial sim values
         panelSizeSlider.value = simManager.collectorArea_sqM;
         tankSizeSlider.value = simManager.tankVolume_L;
         sunIntensitySlider.value = simManager.sunIntensityFactor;
 
-        // Update the text next to the sliders
+        // Update button text to reflect the default state (Imperial)
+        unitButtonText.text = simManager.useMetric ? "Switch to Imperial" : "Switch to Metric";
+
+        // Update slider text to reflect the default units
         OnPanelSliderChanged(panelSizeSlider.value);
         OnTankSliderChanged(tankSizeSlider.value);
         OnSunSliderChanged(sunIntensitySlider.value);
@@ -112,17 +109,14 @@ public class UIManager : MonoBehaviour
 
     public void OnLoadButtonClicked()
     {
-        // Simulate a 40 Liter load (a typical shower)
-        simManager.SimulateLoad(40f);
+        simManager.SimulateLoad(40f); // Simulate a 40 Liter load
     }
 
     // --- DATA DISPLAY UPDATER ---
     void UpdateDataDisplays()
     {
-        timeText.text = simManager.GetFormattedTime();
         statusText.text = $"Status: {simManager.GetStatusMessage()}";
 
-        // Display temperatures in the selected unit
         if (simManager.useMetric)
         {
             tankTempText.text = $"Tank Temp: {simManager.GetTankTempC():F1}°C";
