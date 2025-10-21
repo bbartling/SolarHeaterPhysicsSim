@@ -4,7 +4,7 @@
 
 The simulation's core is a simplified thermodynamic model that determines how the solar panel and water tank heat up and cool down. It balances energy coming in from the sun, energy lost to the environment, and energy moved from the panel to the tank. The model is built on four fundamental concepts.
 
-![See Physics on SolarThermodynamics.cs](https://github.com/bbartling/SolarHeaterPhysicsSim/blob/develop/Assets/Scripts/SolarThermodynamics.cs)
+[See physics calculations on SolarThermodynamics.cs](https://github.com/bbartling/SolarHeaterPhysicsSim/blob/develop/Assets/Scripts/SolarThermodynamics.cs)
 ---
 
 ### 1. Energy Input: Solar Gain ☀️
