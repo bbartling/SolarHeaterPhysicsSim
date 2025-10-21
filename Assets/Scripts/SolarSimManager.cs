@@ -6,6 +6,7 @@ public class SolarSimManager : MonoBehaviour
 {
     // --- SCENE REFERENCES ---
     [Header("Scene Object References")]
+    public Light sunLight;
     public GameObject solarPanel;
     public GameObject storageTank;
     public GameObject pumpImpeller;
@@ -33,6 +34,12 @@ public class SolarSimManager : MonoBehaviour
     // --- A reference to our pure physics class ---
     private SolarThermodynamics physicsModel;
 
+    // --- NEW variables for visual scaling ---
+    private Vector3 initialPanelScale;
+    private Vector3 initialTankScale;
+    private float initialPanelArea;
+    private float initialTankVolume;
+
     void Start()
     {
         // --- SETUP AUDIO ---
@@ -50,6 +57,12 @@ public class SolarSimManager : MonoBehaviour
 
         panelMaterialInstance = solarPanel.GetComponent<Renderer>().material;
         tankMaterialInstance = storageTank.GetComponent<Renderer>().material;
+
+        // --- Store initial values for scaling ---
+        initialPanelScale = solarPanel.transform.localScale;
+        initialTankScale = storageTank.transform.localScale;
+        initialPanelArea = collectorArea_sqFt;
+        initialTankVolume = tankVolume_gal;
 
         // Initialize the physics model with converted metric units
         physicsModel = new SolarThermodynamics(FtoC(ambientTempF), SqFtToSqM(collectorArea_sqFt), GalToL(tankVolume_gal));
@@ -72,6 +85,18 @@ public class SolarSimManager : MonoBehaviour
 
     void UpdateVisuals()
     {
+        // --- Safely update the sun light intensity ---
+        if (sunLight != null)
+        {
+            // Normalize the 0-350 BTU range to a 0-1 range for light intensity
+            float normalizedIntensity = solarIrradiance_BTUhrft2 / 350f;
+            sunLight.intensity = normalizedIntensity;
+        }
+
+        // --- NEW: Update object scales based on sliders ---
+        UpdateObjectScales();
+
+        // --- Existing Pump Animation and Sound Logic ---
         if (physicsModel.IsPumpOn)
         {
             pumpImpeller.transform.Rotate(0, 0, -200f * Time.deltaTime);
@@ -91,6 +116,20 @@ public class SolarSimManager : MonoBehaviour
         // Visuals are still driven by the internal Celsius temperatures
         panelMaterialInstance.color = tempGradient.Evaluate(Mathf.Clamp01(physicsModel.PanelTempC / 100f));
         tankMaterialInstance.color = tempGradient.Evaluate(Mathf.Clamp01(physicsModel.TankTempC / 100f));
+    }
+
+    // --- NEW METHOD for scaling objects ---
+    void UpdateObjectScales()
+    {
+        // Scale the panel's area (X and Z axes)
+        float panelAreaRatio = collectorArea_sqFt / initialPanelArea;
+        float panelScaleRatio = Mathf.Sqrt(panelAreaRatio); // Use Sqrt for area
+        solarPanel.transform.localScale = new Vector3(initialPanelScale.x * panelScaleRatio, initialPanelScale.y, initialPanelScale.z * panelScaleRatio);
+
+        // Scale the tank's volume (all axes uniformly)
+        float tankVolumeRatio = tankVolume_gal / initialTankVolume;
+        float tankScaleRatio = Mathf.Pow(tankVolumeRatio, 1f / 3f); // Use Cube Root for volume
+        storageTank.transform.localScale = initialTankScale * tankScaleRatio;
     }
 
     // This method now accepts gallons and converts internally
@@ -119,6 +158,7 @@ public class SolarSimManager : MonoBehaviour
     private bool ValidateReferences()
     {
         var missingRefs = new List<string>();
+        if (sunLight == null) missingRefs.Add("Sun Light");
         if (solarPanel == null) missingRefs.Add("Solar Panel");
         if (storageTank == null) missingRefs.Add("Storage Tank");
         if (pumpImpeller == null) missingRefs.Add("Pump Impeller");

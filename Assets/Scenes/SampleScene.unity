@@ -203,10 +203,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1523685016}
   m_HandleRect: {fileID: 1435281576}
   m_Direction: 0
-  m_MinValue: 10
+  m_MinValue: 20
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -963,7 +963,7 @@ Transform:
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -1.57, y: 12.28, z: 2.73}
+  m_LocalPosition: {x: 3.76, y: 7.84, z: -6.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1020,8 +1020,8 @@ Transform:
   m_GameObject: {fileID: 410710737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.16, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.001, y: 0.006, z: -0.039}
+  m_LocalScale: {x: 1.1543876, y: 0.5281114, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1699226725}
@@ -1070,7 +1070,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 620b8b85314cb03419cb184d9c99756a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2317,6 +2317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11542d5b42b12ef4abfd952d8f56607d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sunLight: {fileID: 410087040}
   solarPanel: {fileID: 317961901}
   storageTank: {fileID: 1030696243}
   pumpImpeller: {fileID: 410710737}
@@ -4170,10 +4171,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 447766048}
   m_HandleRect: {fileID: 971416056}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 20
   m_MaxValue: 150
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
